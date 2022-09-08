@@ -10,4 +10,4 @@ jobs:
       - name: Install Build Dependencies
         run: sudo apt-get install -y equivs
       - name: Create package
-        run: equivs texlive-full-no-bloat.cfg
+        run: equivs-build texlive-full-no-bloat.cfg
