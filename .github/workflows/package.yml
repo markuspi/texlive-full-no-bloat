@@ -1,6 +1,9 @@
 name: Create Package
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -14,8 +17,9 @@ jobs:
       - name: Create package
         run: equivs-build texlive-full-no-bloat.cfg
       
-      - uses: actions/upload-artifact@v3
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: package
-          path: '*.deb'
+          files: '*.deb'
       
